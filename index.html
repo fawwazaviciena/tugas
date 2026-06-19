@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Math Logbook 🪵</title>
+    <!-- Tailwind CSS Resmi -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Elegan & Profesional Monospace -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Fraunces:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .serif-title {
+            font-family: 'Fraunces', serif;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Efek Pola Grid Matematika Minimalis */
+        .grid-paper {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+    </style>
+</head>
+<body id="main-bg" class="bg-zinc-100 text-zinc-800 min-h-screen p-3 sm:p-6 flex flex-col justify-between selection:bg-zinc-800 selection:text-white">
+
+    <!-- TOP HEADER: DESK SETUP MODES (KUSTOMISASI UTAMA BARU) -->
+    <header class="max-w-5xl w-full mx-auto bg-white p-4 rounded-xl border border-zinc-200/80 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+        <div class="text-center sm:text-left">
+            <h1 class="serif-title text-2xl font-bold italic text-zinc-900 tracking-wide">
+                the workspace logbook 🪵
+            </h1>
+            <p class="text-[10px] code-font text-zinc-400 font-bold uppercase tracking-wider mt-0.5">Core Math Station // Class 10 SMA</p>
+        </div>
+        
+        <!-- MATTE DESK MODE SELECTOR -->
+        <div class="flex bg-zinc-100 p-1 rounded-lg border border-zinc-200 gap-1">
+            <button onclick="setDeskMode('charcoal')" id="m-charcoal" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-1">
+                ☕ Charcoal
+            </button>
+            <button onclick="setDeskMode('forest')" id="m-forest" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-1">
+                🌿 Forest
+            </button>
+            <button onclick="setDeskMode('navy')" id="m-navy" class="px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-1">
+                ⚓ Navy
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN TECHNICAL NOTEBOOK LAYOUT -->
+    <main class="max-w-5xl w-full mx-auto bg-white rounded-2xl border border-zinc-200 shadow-sm grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+        
+        <!-- LEFT SIDEBAR: MINIMALIST TABS (4 COLUMNS) -->
+        <section class="lg:col-span-4 bg-zinc-50/50 border-r border-zinc-200 p-4 sm:p-6 flex flex-col gap-2.5">
+            <span class="text-[10px] code-font font-bold text-zinc-400 tracking-widest uppercase px-1">📁 INDEX INDEX INDEX</span>
+            
+            <button onclick="switchSubject('sptldv')" id="btn-sptldv" class="w-full p-4 rounded-xl text-left transition-all duration-200 border border-transparent">
+                <div class="text-[9px] code-font text-zinc-400 font-bold mb-0.5">[ LOG_01 ]</div>
+                <h3 class="font-bold text-sm text-zinc-800">SPTLDV Layer</h3>
+                <p class="text-[11px] text-zinc-400 mt-0.5">Pertidaksamaan & Batas Daerah</p>
+            </button>
+
+            <button onclick="switchSubject('trigo')" id="btn-trigo" class="w-full p-4 rounded-xl text-left transition-all duration-200 border border-transparent">
+                <div class="text-[9px] code-font text-zinc-400 font-bold mb-0.5">[ LOG_02 ]</div>
+                <h3 class="font-bold text-sm text-zinc-800">Trigonometri Dasar</h3>
+                <p class="text-[11px] text-zinc-400 mt-0.5">Rasio Sisi & Aturan Kuadran</p>
+            </button>
+
+            <button onclick="switchSubject('stats')" id="btn-stats" class="w-full p-4 rounded-xl text-left transition-all duration-200 border border-transparent">
+                <div class="text-[9px] code-font text-zinc-400 font-bold mb-0.5">[ LOG_03 ]</div>
+                <h3 class="font-bold text-sm text-zinc-800">Statistika Analitika</h3>
+                <p class="text-[11px] text-zinc-400 mt-0.5">Data Tunggal & Distribusi Rentang</p>
+            </button>
+        </section>
+
+        <!-- RIGHT DISPLAY PANEL: GRID PAPER JOURNAL (8 COLUMNS) -->
+        <section class="lg:col-span-8 grid-paper p-6 sm:p-8 flex flex-col justify-between min-h-[520px]">
+            
+            <div class="space-y-6">
+                <!-- TOP HEADER SUB-BLOCK -->
+                <div class="border-b-2 border-zinc-200 pb-3">
+                    <span id="subject-badge" class="text-[10px] code-font font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-100 border border-zinc-200 text-zinc-500"></span>
+                    <h2 id="subject-title" class="serif-title text-2xl font-bold text-zinc-900 mt-2"></h2>
+                </div>
+
+                <!-- MAIN BRIEF COMMENTARY -->
+                <div class="bg-white p-5 rounded-xl border border-zinc-200 shadow-sm space-y-1.5">
+                    <h4 class="text-[11px] code-font font-bold text-zinc-400 tracking-wider uppercase">■ Ringkasan Logika Berpikir:</h4>
+                    <p id="subject-desc" class="text-xs sm:text-sm text-zinc-600 leading-relaxed font-medium"></p>
+                </div>
+
+                <!-- BLUEPRINT-STYLE DATA MATRIX BOX -->
+                <div id="data-matrix-box" class="code-font text-xs p-4 rounded-xl border">
+                    <!-- Dynamic injection -->
+                </div>
+
+                <!-- STRUCTURAL QUIZ PANEL -->
+                <div class="bg-zinc-50 p-5 rounded-xl border border-zinc-200/80 space-y-3">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-xs">📂</span>
+                        <h4 class="text-[11px] code-font font-bold uppercase tracking-wider text-zinc-500">Evaluation Test Checkpoint</h4>
+                    </div>
+                    <p id="quiz-question" class="text-xs sm:text-sm text-zinc-800 font-bold leading-relaxed"></p>
+                    
+                    <!-- Choices option matrix grid -->
+                    <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                        <!-- Option buttons dynamic -->
+                    </div>
+                    
+                    <!-- Instant Validation Box -->
+                    <div id="quiz-alert" class="hidden text-xs code-font font-bold p-3 rounded-lg text-center border transition-all"></div>
+                </div>
+            </div>
+
+            <!-- EXTERNAL REDIRECT CONTROLLER FOOTER -->
+            <div class="pt-6 border-t border-zinc-200 mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <span class="text-[10px] code-font text-zinc-400 font-bold uppercase tracking-wider">Log_Status: Verified & Operational</span>
+                <a id="video-link" href="#" target="_blank" class="w-full sm:w-auto text-center px-5 py-2.5 text-white font-bold text-xs tracking-wide uppercase rounded-lg transition duration-200 shadow-sm">
+                    Akses Video Solusi ➔
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER COPYRIGHT TERMINAL -->
+    <footer class="text-center text-[10px] code-font text-zinc-400 font-bold tracking-widest uppercase py-6">
+        ■ designed for productivity • clean technical framework v3.1 © 2026 ■
+    </footer>
+
+    <!-- ENGINE CODE CORE LOGIC -->
+    <script>
+        let currentSubject = 'sptldv';
+        let currentMood = 'charcoal';
+
+        // DATABASE MATERI + QUIZ MATEMATIKA KELAS 10 LENGKAP
+        const logbookDatabase = {
+            sptldv: {
+                badge: "Kategori: Aljabar Linier",
+                title: "Sistem Pertidaksamaan Linear Dua Variabel",
+                desc: "Menentukan daerah penyelesaian pada grafik itu terstruktur banget. Pertama, carilah intersep atau titik potong pada sumbu X dan sumbu Y secara bergantian (substitusikan angka nol), lalu buat garis lurus pembatas. Terakhir, lakukan uji logika ordinaris menggunakan titik acuan (0,0). Jika relasi matematisnya terbukti valid/benar, arsir seluruh wilayah yang mengurung koordinat (0,0) tersebut.",
+                matrix: `
+                    <p class="font-bold text-zinc-800 mb-2">▼ ATURAN GRAFIK & NOTASI SISTEM:</p>
+                    <p class="mb-1">• <strong class="text-zinc-700">Solid Line:</strong> Digunakan jika pertidaksamaan memuat unsur sama dengan (≤ atau ≥).</p>
+                    <p>• <strong class="text-zinc-700">Dashed Line:</strong> Digunakan jika pertidaksamaan murni lebih besar/kecil dari (< atau >).</p>
+                `,
+                quiz: {
+                    question: "Jika daerah hasil dari persamaan pertidaksamaan x + y ≥ 5 diuji menggunakan titik uji asal (0,0), apakah kesimpulan pernyataan logikanya bernilai benar atau salah?",
+                    options: [
+                        { text: "SALAH, karena nilai 0 tidak lebih besar dari 5", isCorrect: true },
+                        { text: "BENAR, karena 0 otomatis memenuhi syarat", isCorrect: false }
+                    ]
+                },
+                link: "https://www.youtube.com/results?search_query=belajar+sptldv+mudah"
+            },
+            trigo: {
+                badge: "Kategori: Geometri Vektor",
+                title: "Trigonometri & Komparasi Rasio Segitiga Siku-Siku",
+                desc: "Trigonometri mengkalkulasi rasio perbandingan panjang sisi-sisi geometris segitiga siku-siku berdasarkan sudut acuan elevasi. Jembatan memori dasar yang wajib dikuasai: Sin = Demi (Depan/Miring), Cos = Sami (Samping/Miring), dan Tan = Desa (Depan/Samping). Untuk distribusi tanda positif/negatif di kuadran, gunakan rumus baku ASTC (All, Sin, Tan, Cos).",
+                matrix: `
+                    <p class="font-bold text-zinc-800 mb-2">▼ MATRIKS NILAI SUDUT ISTIMEWA KUADRAN I:</p>
+                    <div class="grid grid-cols-4 gap-1 text-center font-mono bg-zinc-50 p-2 rounded border border-zinc-200">
+                        <span class="text-zinc-400">θ:</span><span class="text-zinc-700 font-bold">30°</span><span class="text-zinc-700 font-bold">45°</span><span class="text-zinc-700 font-bold">60°</span>
+                        <span class="text-zinc-400">Sin:</span><span>1/2</span><span>1/2√2</span><span>1/2√3</span>
+                        <span class="text-zinc-400">Cos:</span><span>1/2√3</span><span>1/2√2</span><span>1/2</span>
+                    </div>
+                `,
+                quiz: {
+                    question: "Sebuah material tangga sepanjang 6 meter bersandar pada dinding tegak dan membentuk sudut elevasi lantai sebesar 60°. Tinggi vertikal dinding dapat dicari secara akurat menggunakan rasio fungsi apa?",
+                    options: [
+                        { text: "Menggunakan fungsi rasio SIN (Depan/Miring)", isCorrect: true },
+                        { text: "Menggunakan fungsi rasio COS (Samping/Miring)", isCorrect: false }
+                    ]
+                },
+                link: "https://www.youtube.com/results?search_query=trik+trigonometri+sudut+istimewa"
+            },
+            stats: {
+                badge: "Kategori: Deskriptif Analitika",
+                title: "Statistika: Parameter Pemusatan Data Tunggal",
+                desc: "Mengevaluasi distribusi kelompok data tunggal kelas 10 bertumpu pada analisis tiga elemen utama: Mean (rata-rata aritmatika, dihitung dengan menjumlahkan seluruh nilai data kemudian dibagi total frekuensi), Median (nilai pembatas tengah tepat, dengan prasyarat urutan data wajib sekuensial dari terkecil), dan Modus (nilai data dengan frekuensi kemunculan tertinggi).",
+                matrix: `
+                    <p class="font-bold text-zinc-800 mb-2">▼ PARAMETER JANGKAUAN (RANGE) DATA:</p>
+                    <p class="mb-1">• Rumus Jangkauan dieksekusi melalui kalkulasi selisih nilai maksimum dikurangi nilai minimum (Xmax - Xmin).</p>
+                    <p>• Contoh sebaran data tunggal (6, 7, 8, 8, 9) menghasilkan Mean = 7.6, Median = 8, Modus = 8, dan Range = 3.</p>
+                `,
+                quiz: {
+                    question: "Diketahui sebaran data riil dari hasil nilai ujian harian adalah: 5, 6, 7, 7, 10. Hitunglah berapakah besaran nilai Jangkauan (Range) data tersebut!",
+                    options: [
+                        { text: "Nilai Jangkauan = 5 (Didapat dari 10 - 5)", isCorrect: true },
+                        { text: "Nilai Jangkauan = 7 (Karena angka 7 adalah modus)", isCorrect: false }
+                    ]
+                },
+                link: "https://www.youtube.com/results?search_query=statistika+data+tunggal+kelas+10"
+            }
+        };
+
+        // KONFIGURASI TEMA WARNA MASKULIN MINIMALIS (DESK SETUP THEMES)
+        const deskThemes = {
+            charcoal: {
+                bg: "bg-zinc-100",
+                tabActive: "bg-zinc-900 border-zinc-900 text-white font-bold shadow-sm",
+                sidebarActive: "bg-white border-zinc-900 shadow-sm",
+                matrixBox: "bg-zinc-50 border-zinc-200 text-zinc-600",
+                button: "bg-zinc-900 hover:bg-zinc-800 shadow-zinc-200"
+            },
+            forest: {
+                bg: "bg-stone-100",
+                tabActive: "bg-emerald-800 border-emerald-800 text-white font-bold shadow-sm",
+                sidebarActive: "bg-emerald-50/50 border-emerald-800 shadow-sm",
+                matrixBox: "bg-stone-50 border-stone-200 text-zinc-600",
+                button: "bg-emerald-800 hover:bg-emerald-700 shadow-emerald-100"
+            },
+            navy: {
+                bg: "bg-slate-100",
+                tabActive: "bg-slate-800 border-slate-800 text-white font-bold shadow-sm",
+                sidebarActive: "bg-slate-50 border-slate-800 shadow-sm",
+                matrixBox: "bg-slate-50 border-slate-200 text-zinc-600",
+                button: "bg-slate-800 hover:bg-slate-700 shadow-slate-200"
+            }
+        };
+
+        function renderDashboard() {
+            const data = logbookDatabase[currentSubject];
+            const theme = deskThemes[currentMood];
+
+            // 1. Ubah Latar Belakang Body Sesuai Mode Jurnal
+            document.getElementById('main-bg').className = `${theme.bg} text-zinc-800 min-h-screen p-3 sm:p-6 flex flex-col justify-between selection:bg-zinc-800 selection:text-white`;
+
+            // 2. Injeksi Data Teks Utama Modul
+            document.getElementById('subject-badge').innerText = data.badge;
+            document.getElementById('subject-title').innerText = data.title;
+            document.getElementById('subject-desc').innerText = data.desc;
+
+            // 3. Injeksi Box Rumus Tengah + Pengkondisian Warna Frame Dinamis
+            const matrixBox = document.getElementById('data-matrix-box');
+            matrixBox.innerHTML = data.matrix;
+            matrixBox.className = `code-font text-xs p-4 rounded-xl border ${theme.matrixBox}`;
+
+            // 4. Injeksi Kuis Pertanyaan
+            document.getElementById('quiz-question').innerText = data.quiz.question;
+            document.getElementById('quiz-alert').className = "hidden text-xs code-font font-bold p-3 rounded-lg text-center border transition-all"; // Reset alert
+
+            // 5. Injeksi Tombol Pilihan Jawaban Kuis
+            const optionsBox = document.getElementById('quiz-options');
+            optionsBox.innerHTML = '';
+            data.quiz.options.forEach(opt => {
+                const button = document.createElement('button');
+                button.innerText = opt.text;
+                button.className = "p-3 bg-white border border-zinc-200 text-zinc-700 rounded-xl text-left text-xs font-semibold hover:bg-zinc-50 transition duration-150";
+                button.onclick = function() { checkLogQuiz(opt.isCorrect); };
+                optionsBox.appendChild(button);
+            });
+
+            // 6. Sinkronisasi Tombol Tonton Video Utama
+            const linkBtn = document.getElementById('video-link');
+            linkBtn.href = data.link;
+            linkBtn.className = `w-full sm:w-auto text-center px-5 py-2.5 text-white font-bold text-xs tracking-wide uppercase rounded-lg shadow-sm transition duration-200 ${theme.button}`;
+
+            // 7. Sinkronisasi Aktif Tombol Navigasi Sidebar Kiri
+            const subjects = ['sptldv', 'trigo', 'stats'];
+            subjects.forEach(s => {
+                const btn = document.getElementById(`btn-${s}`);
+                if (s === currentSubject) {
+                    btn.className = `w-full p-4 rounded-xl text-left transition-all duration-200 border-l-4 ${theme.sidebarActive}`;
+                } else {
+                    btn.className = "w-full p-4 rounded-xl text-left transition-all duration-200 border-l-4 border-transparent hover:bg-zinc-50 text-zinc-600";
+                }
+            });
+
+            // 8. Sinkronisasi Aktif Tombol Header Menu Mode Kustomisasi
+            const moods = ['charcoal', 'forest', 'navy'];
+            moods.forEach(m => {
+                const moodBtn = document.getElementById(`m-${m}`);
+                if (m === currentMood) {
+                    moodBtn.className = `px-3 py-1.5 rounded-md text-xs font-bold transition-all flex items-center gap-1 ${theme.tabActive}`;
+                } else {
+                    moodBtn.className = "px-3 py-1.5 rounded-md text-xs font-medium text-zinc-400 hover:text-zinc-700 transition-all flex items-center gap-1";
+                }
+            });
+        }
+
+        // Handler Pengecekan Kuis Jurnal Secara Presisi
+        function checkLogQuiz(isCorrect) {
+            const alertBox = document.getElementById('quiz-alert');
+            alertBox.classList.remove('hidden');
+            if (isCorrect) {
+                alertBox.innerText = "✓ LOG_SUCCESS: Verifikasi Berhasil, Jawaban Tepat! (+500 Aura Points) 🛠️";
+                alertBox.className = "text-xs code-font font-bold p-3 rounded-lg text-center border bg-emerald-50 border-emerald-200 text-emerald-700 block animate-bounce";
+            } else {
+                alertBox.innerText = "⚠ LOG_ERROR: Kegagalan Logika, Periksa Kembali Baris Rumus Di Atas!";
+                alertBox.className = "text-xs code-font font-bold p-3 rounded-lg text-center border bg-rose-50 border-rose-200 text-rose-600 block";
+            }
+        }
+
+        // Router Control
+        function switchSubject(id) {
+            currentSubject = id;
+            renderDashboard();
+        }
+
+        function setDeskMode(moodId) {
+            currentMood = moodId;
+            renderDashboard();
+        }
+
+        // Initialization Bootup Process
+        document.addEventListener("DOMContentLoaded", function() {
+            renderDashboard();
+        });
+    </script>
+</body>
+</html>
